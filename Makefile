@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/03/31 15:18:59 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/01 15:13:08 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ DEPS = $(SOURCES:%.c=$(OBJ_DIR)/%.d)
 
 #INCLUDES#######################
 
-HEADERS_DIR = include/ libft/include/ 
+HEADERS_DIR = include/ libft/include/ minilibx/
 
 HEADERS_NAME = fdf.h libft.h
 
@@ -59,23 +59,28 @@ INCLUDES = $(addprefix -I , $(HEADERS_DIR))
 LIBFT = libft
 
 LIBFT_PATH = $(LIBFT)/$(LIBFT).a
+#MINILIBX#####################
+
+MINILIBX = libmlx.a
+
+MINILIBX_PATH = minilibx/$(MINILIBX)
 #COMPILER#####################
 
 COMPILER = cc
 
-CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wstrict-prototypes -Wmissing-prototypes \
+CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wcast-align -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
--Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11 
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 
-CFLAGS = $(CFLAGS_DEBUG)
+export CFLAGS = $(CFLAGS_DEBUG)
 
-all: git make_libft $(NAME)
+all: make_libft make_minilibx $(NAME)
 
-$(NAME):  $(OBJECTS) $(LIBFT_PATH)
-	$(COMPILER) $(CFLAGS) $(INCLUDES) $^ -o $@
+$(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
+	$(COMPILER) $(CFLAGS) -lXext -lX11 $(INCLUDES) $^ -o $@
 	@echo "$(NAME) built succesfully."
 
 
@@ -90,6 +95,9 @@ git:
 
 make_libft:
 	@$(MAKE) -s -C $(LIBFT)
+	
+make_minilibx:
+	@$(MAKE) -s -C minilibx
 
 clean:
 	@$(MAKE) -s -C $(LIBFT) clean
@@ -108,4 +116,4 @@ re:
 	$(MAKE) all
 
 
-.PHONY: all clean fclean re make_libft git
+.PHONY: all clean fclean re make_libft make_minilibx git
