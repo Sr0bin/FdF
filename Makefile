@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/04/01 15:13:08 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/14 12:58:37 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = fdf
 
 SOURCES_DIR = src
 
-SOURCES_NAME = main.c 
+SOURCES_NAME = main.c graphic.c mlx_utils.c
 
 SOURCES_UTILS = 
 
@@ -24,14 +24,14 @@ SOURCES_CONTEXT =
 
 SOURCES_ALGO = 
 
-SOURCES_DEBUG = 
+SOURCES_DEBUG = matrix_test.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
 		  $(addprefix utils/, $(SOURCES_UTILS))\
 		  $(addprefix context/, $(SOURCES_CONTEXT))\
 		  $(addprefix algo/, $(SOURCES_ALGO))\
-		  $(addprefix .hidden/, $(SOURCES_DEBUG))\
+		  $(addprefix .test/, $(SOURCES_DEBUG))\
 		  )
 		  
 
@@ -75,7 +75,9 @@ CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsig
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 
-export CFLAGS = $(CFLAGS_DEBUG)
+CFLAGS = $(CFLAGS_DEBUG)
+
+export CFLAGS
 
 all: make_libft make_minilibx $(NAME)
 
@@ -94,7 +96,7 @@ git:
 	@git submodule update --init --remote --recursive
 
 make_libft:
-	@$(MAKE) -s -C $(LIBFT)
+	$(MAKE)  -C $(LIBFT)
 	
 make_minilibx:
 	@$(MAKE) -s -C minilibx
@@ -102,6 +104,7 @@ make_minilibx:
 clean:
 	@$(MAKE) -s -C $(LIBFT) clean
 	@rm -rf $(OBJ_DIR)
+	@rm -rf .cache/
 	@rm -f .bonus
 	@echo "Cleaned !"
 
