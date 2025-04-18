@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/04/14 12:58:37 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/18 15:40:18 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = fdf
 
 SOURCES_DIR = src
 
-SOURCES_NAME = main.c graphic.c mlx_utils.c
+SOURCES_NAME = main.c graphic.c mlx_utils.c init.c array_utils.c parsing.c vertex.c edge.c geometry.c
 
 SOURCES_UTILS = 
 
@@ -24,7 +24,7 @@ SOURCES_CONTEXT =
 
 SOURCES_ALGO = 
 
-SOURCES_DEBUG = matrix_test.c
+SOURCES_DEBUG = matrix_test.c graphic_test.c debug.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
@@ -71,7 +71,7 @@ COMPILER = cc
 CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsign-conversion -Wmissing-prototypes \
 -Wformat=2 -Wformat-security -Wnull-dereference -Wstack-protector -Wfloat-equal -Wpointer-arith \
 -Wcast-align -Wundef -Wbad-function-cast -Wstrict-overflow=4 -Wdouble-promotion -Walloca -Wvla \
--Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11 
+-Wwrite-strings -Wuninitialized -fno-delete-null-pointer-checks -fno-omit-frame-pointer -std=c11
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 
@@ -82,7 +82,7 @@ export CFLAGS
 all: make_libft make_minilibx $(NAME)
 
 $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
-	$(COMPILER) $(CFLAGS) -lXext -lX11 $(INCLUDES) $^ -o $@
+	$(COMPILER) $(CFLAGS) -lc -lm -lXext -lX11 $(INCLUDES) $^ -o $@
 	@echo "$(NAME) built succesfully."
 
 
