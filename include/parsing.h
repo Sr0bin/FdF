@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 15:18:05 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 20:25:25 by rorollin         ###   ########.fr       */
+/*   Created: 2025/04/15 15:41:34 by rorollin          #+#    #+#             */
+/*   Updated: 2025/04/18 21:43:03 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <mlx.h>
-# include <fcntl.h>
-# include <math.h>
+#ifndef PARSING_H
+# define PARSING_H
 # include "struct.h"
-# include "error.h"
-# include "parsing.h"
-# include "graphic.h"
-# include "geometryfdf.h"
-#ifndef M_PI
-#    define M_PI 3.14159265358979323846
-#endif
-# define W_WIDTH 2000
-# define W_HEIGHT 1000
-# define TRANSLATE 5
-# define ISO_ANGLE 30
-# define SCALE 10
 
-int	clean_exit(void *env);
+int	*array_init(char *str);
+int	*array_join(int	**ar1, int **ar2);
+int	**array_populate(const char *path);
+int	line_count(const char *path);
+void	*free_array(void ***array);
 #endif
