@@ -6,25 +6,17 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:45:40 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 16:22:27 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/19 22:58:02 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_vertex	init_vertex(t_matrix coords)
-{
-	t_vertex	vertex;
-
-	vertex.coords = coords;
-	return (vertex);
-}
-
 static size_t	map_size(int **map)
 {
 	size_t	i;
 	size_t	counter;
-	int	*temp;
+	int		*temp;
 
 	i = 0;
 	counter = 0;
@@ -39,15 +31,15 @@ static size_t	map_size(int **map)
 
 static	void	*add_vertex_line(int *array, int depth, t_vertex *list)
 {
-	int	i;
-	t_matrix coords;
-	size_t	counter;
+	int			i;
+	t_matrix	coords;
+	size_t		counter;
 
 	i = 1;
 	counter = 0;
 	while (i < array[0] + 1)
 	{
-		coords = create_matrix(3,1);
+		coords = create_matrix(3, 1);
 		if (coords == NULL)
 			return (free_vertex_list(list));
 		coords->index[0][0] = (float) i;
@@ -91,8 +83,8 @@ t_vertex	*init_vertex_list(int	**map)
 {
 	t_vertex	*vertex_list;
 	t_vertex	*temp_list;
-	int		i;
-	int		counter;
+	int			i;
+	int			counter;
 
 	i = 0;
 	counter = 0;

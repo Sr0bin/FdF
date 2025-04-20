@@ -16,21 +16,24 @@ NAME = fdf
 
 SOURCES_DIR = src
 
-SOURCES_NAME = main.c graphic.c mlx_utils.c init.c array_utils.c parsing.c vertex.c edge.c geometry.c
+SOURCES_NAME = main.c init.c
 
-SOURCES_UTILS = 
+SOURCES_GRAPHIC = draw.c graphic.c line.c
 
-SOURCES_CONTEXT =  
+SOURCES_GEOMETRY = edge.c geometry.c projection.c vertex.c 
 
-SOURCES_ALGO = 
+SOURCES_MLX = hook.c mlx_utils.c 
+
+SOURCES_PARSING = array_utils.c parsing.c
 
 SOURCES_DEBUG = matrix_test.c graphic_test.c debug.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
-		  $(addprefix utils/, $(SOURCES_UTILS))\
-		  $(addprefix context/, $(SOURCES_CONTEXT))\
-		  $(addprefix algo/, $(SOURCES_ALGO))\
+		  $(addprefix graphic/, $(SOURCES_GRAPHIC))\
+		  $(addprefix geometry/, $(SOURCES_GEOMETRY))\
+		  $(addprefix mlx/, $(SOURCES_MLX))\
+		  $(addprefix parsing/, $(SOURCES_PARSING))\
 		  $(addprefix .test/, $(SOURCES_DEBUG))\
 		  )
 		  

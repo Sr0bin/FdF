@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:18:05 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 20:25:25 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:47:27 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "parsing.h"
 # include "graphic.h"
 # include "geometryfdf.h"
-#ifndef M_PI
-#    define M_PI 3.14159265358979323846
-#endif
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 # define W_WIDTH 2000
 # define W_HEIGHT 1000
 # define TRANSLATE 5

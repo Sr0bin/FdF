@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 17:17:31 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 20:54:04 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,27 @@
 #include "fdf.h"
 #include "get_next_line.h"
 
+static	size_t	contain_forbidden_c(char *str)
+{
+	size_t	counter;
+
+	counter = 0;
+	while (str[counter] != '\0')
+	{
+		if (!ft_issign(str[counter]) && !ft_isdigit(str[counter]) \
+			&& !ft_iswhitespace(str[counter]))
+		{
+			return (1);
+		}
+		counter++;
+	}
+	return (0);
+}
+
 int	line_count(const char *path)
 {
-	int	line_count;
-	int	fd;
+	int		line_count;
+	int		fd;
 	char	*line;
 
 	line_count = 0;
@@ -29,6 +46,11 @@ int	line_count(const char *path)
 	{
 		free(line);
 		line = get_next_line(fd);
+		if (line != NULL && contain_forbidden_c(line))
+		{
+			free(line);
+			return (-1);
+		}
 		line_count++;
 	}
 	close(fd);
@@ -39,10 +61,10 @@ static int	**array_valid(int **map)
 {
 	size_t	counter;
 	size_t	temp;
-	int	j;
-	
+	int		j;
+
 	counter = 0;
-	while(map[counter] != NULL)
+	while (map[counter] != NULL)
 	{
 		temp = counter;
 		j = map[counter][0];
@@ -56,22 +78,21 @@ static int	**array_valid(int **map)
 	}
 	return (map);
 }
+
 int	**array_populate(const char *path)
 {
 	int		**array;
 	int		fd;
-	int		line_cnt;
 	int		counter;
 	char	*line;
 
 	counter = 0;
-	line_cnt = line_count(path);
-	if (line_cnt == -1)
+	if (line_count(path) == -1)
 		return (NULL);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-	array = ft_calloc((size_t) line_cnt + 1, sizeof(*array));
+	array = ft_calloc((size_t) line_count(path) + 1, sizeof(*array));
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -83,6 +104,5 @@ int	**array_populate(const char *path)
 	}
 	if (array_valid(array) != NULL)
 		return (array);
-	free_array((void ***) &array);
-	return (NULL);
+	return (free_array((void ***) &array));
 }
