@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:44:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:53:09 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:20:58 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ void	*free_array(void ***array)
 	return (NULL);
 }
 
-static void	free_p(void **p)
-{
-	free(*p);
-	p = NULL;
-}
-
 int	*array_init(char *str)
 {
 	int			*array;
@@ -53,7 +47,7 @@ int	*array_init(char *str)
 	long long	temp;
 
 	nmbrs = ft_split(str, ' ');
-	if (nmbrs == NULL || array_length((void **) nmbrs) == 0)
+	if (nmbrs == NULL)
 		return (free_array((void ***) &nmbrs));
 	len = array_length((void **) nmbrs);
 	array = ft_calloc(sizeof(*array), len + 1);
@@ -72,32 +66,4 @@ int	*array_init(char *str)
 	}
 	free_array((void ***) &nmbrs);
 	return (array);
-}
-
-int	*array_join(int	**ar1, int **ar2)
-{
-	int	i;
-	int	*new_array;
-
-	i = 1;
-	new_array = ft_calloc(sizeof(**ar1), (size_t)((*ar1)[0] + (*ar2)[0] + 1));
-	if (new_array == NULL)
-	{
-		free(*ar2);
-		return (NULL);
-	}
-	new_array[0] = (*ar1)[0] + (*ar2)[0];
-	while (i < (*ar1)[0] + 1)
-	{
-		new_array[i] = (*ar1)[i];
-		i++;
-	}
-	while (i < (*ar1)[0] + (*ar2)[0] + 1)
-	{
-		new_array[i] = (*ar2)[i - (*ar1)[0]];
-		i++;
-	}
-	free_p((void **)ar1);
-	free_p((void **)ar2);
-	return (new_array);
 }
