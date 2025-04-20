@@ -6,12 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:05:53 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:39:29 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:36:42 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "geometryfdf.h"
 
 t_env	init_env(int	***map)
 {

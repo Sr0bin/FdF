@@ -6,14 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:56:23 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 23:30:35 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:36:59 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "geometry.h"
-#include "geometryfdf.h"
-#include <math.h>
 
 static void	bound_pixel(t_pixel *pixel, size_t x, size_t y, float value)
 {

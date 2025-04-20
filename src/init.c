@@ -6,12 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:31:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:35:43 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:36:42 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "geometry.h"
 
 t_pixel	init_pixel(t_color color, float x, float y)
 {
