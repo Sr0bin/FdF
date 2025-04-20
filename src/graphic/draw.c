@@ -6,12 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 22:58:58 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:17:18 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:36:51 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "geometry.h"
 
 void	color_buffer(t_color color, t_image buffer)
 {

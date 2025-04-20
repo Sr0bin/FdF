@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/04/20 23:12:09 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/20 23:36:09 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,6 @@ DEPS = $(SOURCES:%.c=$(OBJ_DIR)/%.d)
 
 HEADERS_DIR = include/ libft/include/ minilibx/
 
-HEADERS_NAME = fdf.h libft.h
-
 INCLUDES = $(addprefix -I , $(HEADERS_DIR))
 
 #LIBFT########################
@@ -78,7 +76,7 @@ CFLAGS_DEBUG = -Wall -Wextra -Werror -MMD -MP -ggdb3 -Wshadow -Wconversion -Wsig
 
 CFLAGS_PROD = -Wall -Wextra -Werror -MMD -MP -ggdb3 -O3
 
-CFLAGS = $(CFLAGS_DEBUG)
+CFLAGS = $(CFLAGS_PROD)
 
 export CFLAGS
 
@@ -99,7 +97,7 @@ git:
 	@git submodule update --init --remote --recursive
 
 make_libft:
-	$(MAKE)  -C $(LIBFT)
+	$(MAKE) -C $(LIBFT)
 	
 make_minilibx:
 	@$(MAKE) -s -C minilibx

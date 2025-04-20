@@ -6,17 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:16:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 20:53:02 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:36:20 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
 #include "fdf.h"
-#include "geometryfdf.h"
-#include "graphic.h"
-#include "mlx.h"
-#include "parsing.h"
-#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {

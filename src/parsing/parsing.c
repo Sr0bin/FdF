@@ -6,13 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 23:08:46 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:46:52 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "fdf.h"
-#include "get_next_line.h"
 
 static	size_t	contain_forbidden_c(char *str)
 {
@@ -31,7 +29,7 @@ static	size_t	contain_forbidden_c(char *str)
 	return (0);
 }
 
-int	line_count(const char *path)
+static int	line_count(const char *path)
 {
 	int		line_count;
 	int		fd;

@@ -6,13 +6,35 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:18:38 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 20:54:42 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:48:50 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 # include "libft.h"
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                      FORWARD DECLARATION									  */
+/*                                                                            */
+/* ************************************************************************** */
+
+typedef struct s_pixel		t_pixel;
+typedef struct s_image		t_image;
+typedef struct s_line		t_line;
+typedef struct s_env		t_env;
+typedef struct s_vertex		t_vertex;
+typedef struct s_edge		t_edge;
+typedef struct s_geometry	t_geometry;
+typedef union s_color		t_color;
+typedef unsigned char		t_uchar;
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                               DRAW		                                  */
+/*                                                                            */
+/* ************************************************************************** */
 
 typedef union s_color
 {
@@ -32,15 +54,6 @@ typedef struct s_pixel
 	t_matrix	coords;
 }	t_pixel;
 
-typedef struct s_image
-{
-	void	*img_context;
-	void	*img_content;
-	int		bit_pixel;
-	int		size_line;
-	int		endian;
-}	t_image;
-
 typedef struct s_line
 {
 	int	xa;
@@ -54,6 +67,28 @@ typedef struct s_line
 	int	error;
 	int	er2;
 }	t_line;
+
+typedef struct s_image
+{
+	void	*img_context;
+	void	*img_content;
+	int		bit_pixel;
+	int		size_line;
+	int		endian;
+}	t_image;
+typedef struct s_env
+{
+	void		*context;
+	void		*window;
+	t_image		image;
+	t_geometry	*geometry;
+}	t_env;
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                               GEOMETRY	                                  */
+/*                                                                            */
+/* ************************************************************************** */
 
 typedef struct s_vertex
 {
@@ -77,24 +112,4 @@ typedef struct s_geometry
 	float		scale;
 }	t_geometry;
 
-typedef struct s_env
-{
-	void		*context;
-	void		*window;
-	t_image		image;
-	t_geometry	*geometry;
-}	t_env;
-
-typedef struct s_camera
-{
-	t_matrix	position;
-	t_matrix	rotation;
-	t_matrix	projection;
-	float	fov;
-	float	aspect_ratio;
-	float	near_plane;
-	float	far_plane;
-}	t_camera;
-
-typedef unsigned char	t_uchar;
 #endif
