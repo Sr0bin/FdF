@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:31:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 20:55:44 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:35:43 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,15 @@ t_pixel	init_pixel(t_color color, float x, float y)
 	return (pixel);
 }
 
-t_color	init_color(t_uchar r,t_uchar g,t_uchar b,t_uchar a)
+t_vertex	init_vertex(t_matrix coords)
+{
+	t_vertex	vertex;
+
+	vertex.coords = coords;
+	return (vertex);
+}
+
+t_color	init_color(t_uchar r, t_uchar g, t_uchar b, t_uchar a)
 {
 	t_color	color;
 

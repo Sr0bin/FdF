@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 16:44:47 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/18 21:43:41 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:53:09 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	*free_array(void ***array)
 		return (NULL);
 	while ((*array)[counter] != NULL)
 		free((*array)[counter++]);
+	free((*array)[counter]);
 	free((void *) *array);
 	*array = NULL;
 	return (NULL);
@@ -52,11 +53,9 @@ int	*array_init(char *str)
 	long long	temp;
 
 	nmbrs = ft_split(str, ' ');
-	if (nmbrs == NULL)
-		return (NULL);
-	len = array_length((void **) nmbrs);
-	if (len == 0)
+	if (nmbrs == NULL || array_length((void **) nmbrs) == 0)
 		return (free_array((void ***) &nmbrs));
+	len = array_length((void **) nmbrs);
 	array = ft_calloc(sizeof(*array), len + 1);
 	if (array == NULL)
 		return (free_array((void ***) &nmbrs));
