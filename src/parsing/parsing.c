@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 23:46:52 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:43:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ int	**array_populate(const char *path)
 	if (line_count(path) == -1)
 		return (NULL);
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
 	array = ft_calloc((size_t) line_count(path) + 1, sizeof(*array));
+	if (array == NULL)
+		return (NULL);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
