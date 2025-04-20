@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:56:23 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:46:33 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/20 23:30:35 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_pixel	*clip_pixel(t_pixel *pixel)
 {
 	if (matrix_get_coord(pixel->coords, 0, 0) >= W_WIDTH)
 		bound_pixel(pixel, 0, 0, W_WIDTH - 1);
-	if (matrix_get_coord(pixel->coords, 0, 0) < 0)
+	if (matrix_get_coord(pixel->coords, 0, 0) <= 0)
 		bound_pixel(pixel, 0, 0, 0);
 	if (matrix_get_coord(pixel->coords, 1, 0) >= W_HEIGHT)
 		bound_pixel(pixel, 1, 0, W_HEIGHT - 1);
-	if (matrix_get_coord(pixel->coords, 1, 0) < 0)
+	if (matrix_get_coord(pixel->coords, 1, 0) <= 0)
 		bound_pixel(pixel, 1, 0, 0);
 	return (pixel);
 }
