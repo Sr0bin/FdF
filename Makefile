@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/04/18 15:40:18 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/20 23:12:09 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,7 @@ CFLAGS = $(CFLAGS_DEBUG)
 
 export CFLAGS
 
-all: make_libft make_minilibx $(NAME)
+all: git make_libft make_minilibx $(NAME)
 
 $(NAME):  $(OBJECTS) $(LIBFT_PATH) $(MINILIBX_PATH)
 	$(COMPILER) $(CFLAGS) -lc -lm -lXext -lX11 $(INCLUDES) $^ -o $@
