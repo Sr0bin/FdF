@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/04/20 23:36:09 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/20 23:58:02 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SOURCES_MLX = hook.c mlx_utils.c
 
 SOURCES_PARSING = array_utils.c parsing.c
 
-SOURCES_DEBUG = matrix_test.c graphic_test.c debug.c
+SOURCES_DEBUG = matrix_test.c graphic_test.c debug.c camera.c
 
 SOURCES = $(addprefix $(SOURCES_DIR)/,\
 		  $(SOURCES_NAME)\
@@ -34,8 +34,8 @@ SOURCES = $(addprefix $(SOURCES_DIR)/,\
 		  $(addprefix geometry/, $(SOURCES_GEOMETRY))\
 		  $(addprefix mlx/, $(SOURCES_MLX))\
 		  $(addprefix parsing/, $(SOURCES_PARSING))\
-		  $(addprefix .test/, $(SOURCES_DEBUG))\
 		  )
+		  # $(addprefix .test/, $(SOURCES_DEBUG))\
 		  
 
 
