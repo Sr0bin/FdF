@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 23:19:29 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:36:39 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:20:28 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	key_hook_scale(int keycode, t_env *mlx_env)
 int	clean_exit(void *env)
 {
 	env = (t_env *) env;
-	free_mlx(env);
+	free_mlx(env, NULL);
 	exit(EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:45:43 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 23:47:27 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:19:11 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 t_env	init_env(int	***map);
 void	init_mlx_hooks(t_env mlx_env);
-t_env	free_mlx(t_env *mlx_env);
+t_env	free_mlx(t_env *mlx_env, int ***map);
 
 t_image	init_image(t_env env);
 t_pixel	init_pixel(t_color color, float x, float y);

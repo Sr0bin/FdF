@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/21 00:43:11 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:24:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	**array_populate(const char *path)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	if (array_valid(array) != NULL)
 		return (array);
 	return (free_array((void ***) &array));
