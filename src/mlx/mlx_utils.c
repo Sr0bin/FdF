@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:05:53 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/21 00:32:55 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:20:12 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ t_env	init_env(int	***map)
 	mlx_env.window = mlx_new_window(mlx_env.context, \
 		W_WIDTH, W_HEIGHT, (char *)"FdF");
 	if (mlx_env.window == NULL)
-		return (free_mlx(&mlx_env));
+		return (free_mlx(&mlx_env, map));
 	mlx_env.image = init_image(mlx_env);
 	if (mlx_env.image.img_context == NULL)
-		return (free_mlx(&mlx_env));
+		return (free_mlx(&mlx_env, map));
 	mlx_env.geometry = init_geometry(*map);
 	if (mlx_env.geometry == NULL)
-		return (free_mlx(&mlx_env));
+		return (free_mlx(&mlx_env, map));
 	free_array((void ***) map);
 	return (mlx_env);
 }
@@ -63,7 +63,7 @@ void	update_image(t_env mlx_env)
 		mlx_env.image.img_context, 0, 0);
 }
 
-t_env	free_mlx(t_env *mlx_env)
+t_env	free_mlx(t_env *mlx_env, int ***map)
 {
 	if (mlx_env->geometry != NULL)
 		free_geometry(&mlx_env->geometry);
@@ -76,6 +76,8 @@ t_env	free_mlx(t_env *mlx_env)
 		mlx_destroy_display(mlx_env->context);
 		free(mlx_env->context);
 	}
+	if (map != NULL && *map != NULL)
+		free_array((void ***) map);
 	mlx_env->window = NULL;
 	mlx_env->context = NULL;
 	return ((const t_env){0});
