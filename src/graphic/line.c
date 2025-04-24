@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 23:17:01 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:34:06 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:08:19 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static	t_line	set_line_param(t_pixel a, t_pixel b)
 	line.ya = (int)(matrix_get_coord(a.coords, 1, 0));
 	line.xb = (int)(matrix_get_coord(b.coords, 0, 0));
 	line.yb = (int)(matrix_get_coord(b.coords, 1, 0));
-	line.dx = abs(line.xb - line.xa);
-	line.dy = abs(line.yb - line.ya);
+	line.dx = fabs(round(line.xb - line.xa));
+	line.dy = fabs(round(line.yb - line.ya));
 	if (line.xa < line.xb)
 		line.sx = 1;
 	else
@@ -31,7 +31,7 @@ static	t_line	set_line_param(t_pixel a, t_pixel b)
 	else
 		line.sy = -1;
 	line.error = line.dx - line.dy;
-	line.er2 = 2 * line.error;
+	line.err2 = 2 * line.error;
 	return (line);
 }
 
@@ -43,13 +43,13 @@ static	void	update_pixel_coord(t_pixel pixel, float x, float y)
 
 static	void	update_line(t_line *line)
 {
-	line->er2 = 2 * line->error;
-	if (line->er2 > -line->dy)
+	line->err2 = 2 * line->error;
+	if (line->err2 > -line->dy)
 	{
 		line->error -= line->dy;
 		line->xa += line->sx;
 	}
-	if (line->er2 < line->dx)
+	if (line->err2 < line->dx)
 	{
 		line->error += line->dx;
 		line->ya += line->sy;

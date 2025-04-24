@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:18:05 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/19 23:47:27 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:29:06 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@
 # define W_WIDTH 2000
 # define W_HEIGHT 1000
 # define TRANSLATE 5
+# define MAX_TRANSLATE 10000
 # define ISO_ANGLE 30
 # define SCALE 10
+# define MAX_SCALE 100
 
 int	clean_exit(void *env);
 #endif

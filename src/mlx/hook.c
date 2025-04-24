@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 23:19:29 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/21 17:20:28 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:23:29 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,28 @@
 
 static void	key_hook_translate(int keycode, t_env *mlx_env)
 {
-	if (keycode == XK_Up)
-		mlx_env->geometry->center_y += TRANSLATE;
-	if (keycode == XK_Down)
-		mlx_env->geometry->center_y -= TRANSLATE;
-	if (keycode == XK_Left)
-		mlx_env->geometry->center_x += TRANSLATE;
-	if (keycode == XK_Right)
-		mlx_env->geometry->center_x -= TRANSLATE;
+	t_geometry	*geometry;
+
+	geometry = mlx_env->geometry;
+	if (keycode == XK_Up && geometry->center_y < MAX_TRANSLATE)
+		geometry->center_y += TRANSLATE;
+	if (keycode == XK_Down && geometry->center_y < MAX_TRANSLATE)
+		geometry->center_y -= TRANSLATE;
+	if (keycode == XK_Left && geometry->center_x < MAX_TRANSLATE)
+		geometry->center_x += TRANSLATE;
+	if (keycode == XK_Right && geometry->center_x < MAX_TRANSLATE)
+		geometry->center_x -= TRANSLATE;
 }
 
 static void	key_hook_scale(int keycode, t_env *mlx_env)
 {
-	if (keycode == XK_d)
-		mlx_env->geometry->scale *= 2;
+	t_geometry	*geometry;
+
+	geometry = mlx_env->geometry;
+	if (keycode == XK_d && geometry->scale < MAX_SCALE)
+		geometry->scale *= 2;
 	if (keycode == XK_s)
-		mlx_env->geometry->scale /= 2;
+		geometry->scale /= 2;
 }
 
 int	clean_exit(void *env)

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:16:06 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 23:36:20 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:24:34 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_env	mlx_env;
 	int		**map_array;
 
-	(void) argc;
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	map_array = array_populate(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 12:05:53 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/21 17:20:12 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:29:41 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_env	init_env(int	***map)
 	mlx_env = (const t_env){0};
 	mlx_env.context = mlx_init();
 	if (mlx_env.context == NULL)
-		return ((const t_env){0});
+		return (free_mlx(&mlx_env, map));
 	mlx_env.window = mlx_new_window(mlx_env.context, \
 		W_WIDTH, W_HEIGHT, (char *)"FdF");
 	if (mlx_env.window == NULL)
@@ -46,7 +46,7 @@ t_image	init_image(t_env env)
 					&image.size_line, &image.endian);
 	if (image.img_content == NULL)
 	{
-		mlx_destroy_image(&env, image.img_context);
+		mlx_destroy_image(env.context, image.img_context);
 		return ((const t_image){0});
 	}
 	return (image);
