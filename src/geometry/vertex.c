@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:45:40 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/21 17:21:57 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:25:14 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	void	*add_vertex_line(int *array, int depth, t_vertex *list)
 	{
 		coords = create_matrix(3, 1);
 		if (coords == NULL)
-			return (free_vertex_list(list));
+			return (NULL);
 		coords->index[0][0] = (float) i;
 		coords->index[1][0] = (float) depth;
 		coords->index[2][0] = (float) array[i];

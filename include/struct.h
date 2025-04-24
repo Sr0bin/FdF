@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 15:18:38 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/20 23:48:50 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/22 12:07:41 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_line
 	int	sx;
 	int	sy;
 	int	error;
-	int	er2;
+	int	err2;
 }	t_line;
 
 typedef struct s_image
