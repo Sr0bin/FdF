@@ -6,7 +6,7 @@
 #    By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/13 20:33:05 by rorollin          #+#    #+#              #
-#    Updated: 2025/04/21 00:47:47 by rorollin         ###   ########.fr        #
+#    Updated: 2025/04/24 20:36:05 by rorollin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SOURCES_GEOMETRY = edge.c geometry.c projection.c vertex.c
 
 SOURCES_MLX = hook.c mlx_utils.c 
 
-SOURCES_PARSING = array_utils.c parsing.c
+SOURCES_PARSING = array_utils.c parsing.c line_utils.c
 
 SOURCES_DEBUG = matrix_test.c graphic_test.c debug.c camera.c
 
