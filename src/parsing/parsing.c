@@ -6,7 +6,7 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/21 17:24:06 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/24 19:32:56 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ static	size_t	contain_forbidden_c(char *str)
 	return (0);
 }
 
+static	int	free_line(char	*line, int fd)
+{
+	free(line);
+	close(fd);
+	return (-1);
+}
+
 static int	line_count(const char *path)
 {
 	int		line_count;
@@ -40,15 +47,14 @@ static int	line_count(const char *path)
 	if (fd == -1)
 		return (-1);
 	line = get_next_line(fd);
+	if (line != NULL && contain_forbidden_c(line))
+		return (free_line(line, fd));
 	while (line != NULL)
 	{
 		free(line);
 		line = get_next_line(fd);
 		if (line != NULL && contain_forbidden_c(line))
-		{
-			free(line);
-			return (-1);
-		}
+			return (free_line(line, fd));
 		line_count++;
 	}
 	close(fd);
@@ -98,6 +104,11 @@ int	**array_populate(const char *path)
 			line[ft_strlen(line) - 1] = '\0';
 		array[counter++] = array_init(line);
 		free(line);
+		if (array[counter - 1] == NULL)
+		{
+			close(fd);
+			return (free_array((void ***) &array));
+		}
 		line = get_next_line(fd);
 	}
 	close(fd);
