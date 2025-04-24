@@ -6,60 +6,11 @@
 /*   By: rorollin <rorollin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 18:29:44 by rorollin          #+#    #+#             */
-/*   Updated: 2025/04/24 19:32:56 by rorollin         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:53:29 by rorollin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static	size_t	contain_forbidden_c(char *str)
-{
-	size_t	counter;
-
-	counter = 0;
-	while (str[counter] != '\0')
-	{
-		if (!ft_issign(str[counter]) && !ft_isdigit(str[counter]) \
-			&& !ft_iswhitespace(str[counter]))
-		{
-			return (1);
-		}
-		counter++;
-	}
-	return (0);
-}
-
-static	int	free_line(char	*line, int fd)
-{
-	free(line);
-	close(fd);
-	return (-1);
-}
-
-static int	line_count(const char *path)
-{
-	int		line_count;
-	int		fd;
-	char	*line;
-
-	line_count = 0;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	line = get_next_line(fd);
-	if (line != NULL && contain_forbidden_c(line))
-		return (free_line(line, fd));
-	while (line != NULL)
-	{
-		free(line);
-		line = get_next_line(fd);
-		if (line != NULL && contain_forbidden_c(line))
-			return (free_line(line, fd));
-		line_count++;
-	}
-	close(fd);
-	return (line_count);
-}
 
 static int	**array_valid(int **map)
 {
@@ -83,36 +34,57 @@ static int	**array_valid(int **map)
 	return (map);
 }
 
+static char	*remove_nl(char *line)
+{
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	return (line);
+}
+
+static	void	*free_close_array(int **array, int fd)
+{
+	if (fd != -1)
+		close(fd);
+	if (array != NULL)
+		return (free_array((void ***) &array));
+	return (NULL);
+}
+
+static int	**array_loop(int **array, int fd)
+{
+	char	*line;
+	size_t	counter;
+
+	counter = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		line = remove_nl(line);
+		array[counter++] = array_init(line);
+		free(line);
+		if (array[counter - 1] == NULL)
+			return (free_close_array(array, fd));
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (array);
+}
+
 int	**array_populate(const char *path)
 {
 	int		**array;
 	int		fd;
-	int		counter;
-	char	*line;
 
-	counter = 0;
 	if (line_count(path) == -1)
 		return (NULL);
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
 	array = ft_calloc((size_t) line_count(path) + 1, sizeof(*array));
 	if (array == NULL)
-		return (NULL);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		array[counter++] = array_init(line);
-		free(line);
-		if (array[counter - 1] == NULL)
-		{
-			close(fd);
-			return (free_array((void ***) &array));
-		}
-		line = get_next_line(fd);
-	}
-	close(fd);
-	if (array_valid(array) != NULL)
+		return (free_close_array(NULL, fd));
+	array = array_loop(array, fd);
+	if (array != NULL && array_valid(array) != NULL)
 		return (array);
 	return (free_array((void ***) &array));
 }
